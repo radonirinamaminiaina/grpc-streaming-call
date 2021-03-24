@@ -5,7 +5,9 @@
   "root": "apps/articles",
   "compilerOptions": {
     "webpack": true,
-    "tsConfigPath": "apps/articles/tsconfig.app.json"
+    "tsConfigPath": "apps/articles/tsconfig.app.json",
+    "assets": ["proto/*.proto"],
+    "watchAssets": true
   },
   "projects": {
     "articles": {
@@ -14,7 +16,9 @@
       "entryFile": "main",
       "sourceRoot": "apps/articles/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/articles/tsconfig.app.json"
+        "tsConfigPath": "apps/articles/tsconfig.app.json",
+        "assets": ["proto/*.proto"],
+        "watchAssets": true
       }
     },
     "users": {
@@ -23,7 +27,9 @@
       "entryFile": "main",
       "sourceRoot": "apps/users/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/users/tsconfig.app.json"
+        "tsConfigPath": "apps/users/tsconfig.app.json",
+        "assets": ["proto/*.proto"],
+        "watchAssets": true
       }
     }
   }

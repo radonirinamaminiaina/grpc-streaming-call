@@ -1,12 +1,14 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Controller } from '@nestjs/common';
+import { GrpcMethod } from '@nestjs/microservices';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @GrpcMethod('ArticlesService', 'GetAll')
+  getAll(_: any) {
+    return {
+      id: 25,
+      title: 'gRPC title',
+      content: 'GRPC content',
+    };
   }
 }

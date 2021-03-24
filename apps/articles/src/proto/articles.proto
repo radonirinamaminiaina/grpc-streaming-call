@@ -1,0 +1,15 @@
+syntax="proto3";
+
+import "google/protobuf/empty.proto";
+
+package articles;
+
+service ArticlesService {
+  rpc GetAll (google.protobuf.Empty) returns (Articles);
+}
+
+message Articles {
+  int32 id = 1;
+  string title = 2;
+  string content = 3;
+}
