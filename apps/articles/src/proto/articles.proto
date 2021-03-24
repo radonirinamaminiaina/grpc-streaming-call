@@ -5,11 +5,20 @@ import "google/protobuf/empty.proto";
 package articles;
 
 service ArticlesService {
-  rpc GetAll (google.protobuf.Empty) returns (Articles);
+  rpc findAll (google.protobuf.Empty) returns (Articles);
+  rpc findOne (ArticleParam) returns (ArticlesItem);
 }
 
-message Articles {
+message ArticleParam {
+  int32 id = 1;
+}
+
+message ArticlesItem {
   int32 id = 1;
   string title = 2;
   string content = 3;
+}
+
+message Articles {
+  repeated ArticlesItem articles = 1;
 }
