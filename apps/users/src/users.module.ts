@@ -3,22 +3,21 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { join } from 'path';
 
 import { UsersController } from './users.controller';
-import { UsersService } from './users.service';
 
 @Module({
   imports: [
     ClientsModule.register([
       {
-        name: 'ARTICLES_PACKAGE',
+        name: 'USERS_PACKAGE',
         transport: Transport.GRPC,
         options: {
-          package: 'articles',
-          protoPath: join(__dirname, '../articles/proto/articles.proto'),
+          package: 'users',
+          protoPath: join(__dirname, './proto/users.proto'),
         },
       },
     ]),
   ],
   controllers: [UsersController],
-  providers: [UsersService],
+  providers: [],
 })
 export class UsersModule {}
