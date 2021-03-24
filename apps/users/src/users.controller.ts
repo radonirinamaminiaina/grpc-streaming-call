@@ -10,6 +10,12 @@ export class UsersController {
       lastname: 'Maminiaina',
       email: 'radonirina@gmail.com',
     },
+    {
+      id: 2,
+      firstname: 'Miary',
+      lastname: 'Iandraina',
+      email: 'miary@gmail.com',
+    },
   ];
 
   @GrpcMethod('UsersService', 'FindAll')
@@ -22,6 +28,6 @@ export class UsersController {
   @GrpcMethod('UsersService', 'FindOne')
   findOne({ id }: { id: number }) {
     const user = this.users.filter((user) => user.id === id);
-    return of(user[0]);
+    return of(user[0] || {});
   }
 }
