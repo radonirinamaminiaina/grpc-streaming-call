@@ -6,6 +6,7 @@ package users;
 
 service UsersService {
   rpc FindAll (Empty) returns (stream Users);
+  rpc FindOne (UserId) returns (UserItem);
 }
 
 message UserItem {
@@ -13,6 +14,10 @@ message UserItem {
   string firstname = 2;
   string lastname = 3;
   string email = 4;
+}
+
+message UserId {
+  int32 id = 1;
 }
 
 message Users {

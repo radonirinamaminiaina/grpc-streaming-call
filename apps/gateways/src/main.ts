@@ -4,7 +4,7 @@ import { GatewaysModule } from './gateways.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(GatewaysModule);
-  await app.listen(3000);
-  Logger.log('Listen gateways in 3000');
+  await app.listen(3001);
+  Logger.log('Listen gateways in 3001');
 }
 bootstrap();

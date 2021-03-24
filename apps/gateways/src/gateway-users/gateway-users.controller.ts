@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { GatewayUsersService } from './gateway-users.service';
 
 @Controller('users')
@@ -8,5 +8,10 @@ export class GatewayUsersController {
   @Get()
   findAll() {
     return this.usersService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: number) {
+    return this.usersService.findOne(id);
   }
 }

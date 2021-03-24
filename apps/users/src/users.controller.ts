@@ -3,18 +3,25 @@ import { GrpcMethod } from '@nestjs/microservices';
 import { of } from 'rxjs';
 @Controller()
 export class UsersController {
+  users = [
+    {
+      id: 1,
+      firstname: 'Radonirina',
+      lastname: 'Maminiaina',
+      email: 'radonirina@gmail.com',
+    },
+  ];
+
   @GrpcMethod('UsersService', 'FindAll')
   findAll(_: any) {
-    const users = {
-      users: [
-        {
-          id: 1,
-          firstname: 'Radonirina',
-          lastname: 'Maminiaina',
-          email: 'radonirina@gmail.com',
-        },
-      ],
-    };
-    return of(users);
+    return of({
+      users: this.users,
+    });
+  }
+
+  @GrpcMethod('UsersService', 'FindOne')
+  findOne({ id }: { id: number }) {
+    const user = this.users.filter((user) => user.id === id);
+    return of(user[0]);
   }
 }
