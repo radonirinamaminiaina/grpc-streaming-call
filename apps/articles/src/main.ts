@@ -17,6 +17,6 @@ async function bootstrap() {
   });
 
   app.startAllMicroservicesAsync();
-  await app.listen(3000, () => Logger.log('Start users at 3000'));
+  Logger.log('Service Articles started');
 }
 bootstrap();

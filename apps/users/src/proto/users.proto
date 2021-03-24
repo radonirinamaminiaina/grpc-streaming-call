@@ -1,0 +1,20 @@
+syntax="proto3";
+
+import "google/protobuf/empty.proto";
+
+package users;
+
+service UsersService {
+  rpc FindAll (google.protobuf.Empty) returns (Users);
+}
+
+message UserItem {
+  int32 id = 1;
+  string firstname = 2;
+  string lastname = 3;
+  string email = 4;
+}
+
+message Users {
+  repeated UserItem user = 1;
+}

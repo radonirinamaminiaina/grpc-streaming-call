@@ -6,7 +6,9 @@
   "compilerOptions": {
     "webpack": true,
     "tsConfigPath": "apps/articles/tsconfig.app.json",
-    "assets": ["proto/*.proto"],
+    "assets": [
+      "proto/*.proto"
+    ],
     "watchAssets": true
   },
   "projects": {
@@ -17,7 +19,9 @@
       "sourceRoot": "apps/articles/src",
       "compilerOptions": {
         "tsConfigPath": "apps/articles/tsconfig.app.json",
-        "assets": ["proto/*.proto"],
+        "assets": [
+          "proto/*.proto"
+        ],
         "watchAssets": true
       }
     },
@@ -28,8 +32,19 @@
       "sourceRoot": "apps/users/src",
       "compilerOptions": {
         "tsConfigPath": "apps/users/tsconfig.app.json",
-        "assets": ["proto/*.proto"],
+        "assets": [
+          "proto/*.proto"
+        ],
         "watchAssets": true
+      }
+    },
+    "gateways": {
+      "type": "application",
+      "root": "apps/gateways",
+      "entryFile": "main",
+      "sourceRoot": "apps/gateways/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/gateways/tsconfig.app.json"
       }
     }
   }

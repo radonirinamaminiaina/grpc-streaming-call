@@ -1,12 +1,19 @@
-import { Controller, Get } from '@nestjs/common';
-import { UsersService } from './users.service';
-
+import { Controller } from '@nestjs/common';
+import { GrpcMethod } from '@nestjs/microservices';
 @Controller()
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
-
-  @Get()
-  getHello() {
-    return this.usersService.getAll();
+  @GrpcMethod('UsersService', 'FindAll')
+  findAll(_: any) {
+    const users = [
+      {
+        user: {
+          id: 1,
+          firstname: 'Radonirina',
+          lastname: 'Maminiaina',
+          email: 'radonirina@gmail.com',
+        },
+      },
+    ];
+    return users;
   }
 }
