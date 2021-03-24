@@ -3,7 +3,7 @@ import { ClientGrpc } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
 
 interface UsersRpcMethods {
-  findAll(param: any): Observable<unknown>;
+  findAll(params: any): Observable<unknown>;
 }
 
 @Injectable()
@@ -16,7 +16,7 @@ export class GatewayUsersService {
     this.usersService = this.client.getService<UsersRpcMethods>('UsersService');
   }
 
-  findAll(): Observable<unknown> {
+  findAll() {
     return this.usersService.findAll({});
   }
 }

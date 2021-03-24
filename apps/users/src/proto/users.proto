@@ -5,7 +5,7 @@ import "google/protobuf/empty.proto";
 package users;
 
 service UsersService {
-  rpc FindAll (google.protobuf.Empty) returns (Users);
+  rpc FindAll (google.protobuf.Empty) returns (stream Users);
 }
 
 message UserItem {
@@ -16,5 +16,5 @@ message UserItem {
 }
 
 message Users {
-  repeated UserItem user = 1;
+  repeated UserItem users = 1;
 }
