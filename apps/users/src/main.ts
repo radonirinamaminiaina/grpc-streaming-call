@@ -1,3 +1,4 @@
+import { GrpcConfiguration, grpcConfiguration } from '@app/grpc-config';
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
@@ -7,12 +8,14 @@ import { UsersModule } from './users.module';
 async function bootstrap() {
   const app = await NestFactory.create(UsersModule);
 
+  const { users } = grpcConfiguration() as GrpcConfiguration;
+
   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.GRPC,
     options: {
-      url: 'localhost:5010',
-      package: 'users',
-      protoPath: join(__dirname, 'proto/users.proto'),
+      url: users.host,
+      package: users.package,
+      protoPath: join(__dirname, users.protoPathServer),
     },
   });
 

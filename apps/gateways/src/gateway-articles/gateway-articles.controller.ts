@@ -1,3 +1,4 @@
+import { grpcConfiguration } from '@app/grpc-config';
 import { Controller, Get, Inject, OnModuleInit, Param } from '@nestjs/common';
 import { ClientGrpc, GrpcMethod } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
@@ -10,7 +11,8 @@ interface ArticlesRpcMethods {
 @Controller('articles')
 export class GatewayArticlesController implements OnModuleInit {
   constructor(
-    @Inject('ARTICLES_PACKAGE') private readonly client: ClientGrpc,
+    @Inject(grpcConfiguration().articles.name)
+    private readonly client: ClientGrpc,
   ) {}
   private articlesService: ArticlesRpcMethods;
 

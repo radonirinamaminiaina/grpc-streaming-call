@@ -1,18 +1,21 @@
+import { grpcConfiguration, GrpcConfiguration } from '@app/grpc-config';
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { join } from 'path';
 import { GatewayUsersController } from './gateway-users.controller';
 
+const { users } = grpcConfiguration() as GrpcConfiguration;
+
 @Module({
   imports: [
     ClientsModule.register([
       {
-        name: 'USERS_PACKAGE',
+        name: users.name,
         transport: Transport.GRPC,
         options: {
-          url: 'localhost:5010',
-          package: 'users',
-          protoPath: join(__dirname, '..', 'users', '/proto/users.proto'),
+          url: users.host,
+          package: users.package,
+          protoPath: join(__dirname, users.protoPathClient),
         },
       },
     ]),

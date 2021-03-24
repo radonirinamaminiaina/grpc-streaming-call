@@ -1,18 +1,23 @@
+import { GrpcConfiguration, grpcConfiguration } from '@app/grpc-config';
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { join } from 'path';
 import { GatewayArticlesController } from './gateway-articles.controller';
 
+const { articles } = grpcConfiguration() as GrpcConfiguration;
+
 @Module({
   imports: [
+    ConfigModule.forRoot(grpcConfiguration()),
     ClientsModule.register([
       {
-        name: 'ARTICLES_PACKAGE',
+        name: articles.name,
         transport: Transport.GRPC,
         options: {
-          url: 'localhost:5000',
-          package: 'articles',
-          protoPath: join(__dirname, '..', 'articles', '/proto/articles.proto'),
+          url: articles.host,
+          package: articles.package,
+          protoPath: join(__dirname, articles.protoPathClient),
         },
       },
     ]),

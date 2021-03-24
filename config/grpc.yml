@@ -1,0 +1,12 @@
+articles:
+  host: 'localhost:5000'
+  protoPathServer: 'proto/articles.proto'
+  protoPathClient: '../articles/proto/articles.proto'
+  package: 'articles'
+  name: 'ARTICLES_PACKAGE'
+users:
+  host: 'localhost:5010'
+  protoPathServer: 'proto/users.proto'
+  protoPathClient: '../users/proto/users.proto'
+  package: 'users'
+  name: 'USERS_PACKAGE'

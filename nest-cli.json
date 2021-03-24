@@ -7,7 +7,8 @@
     "webpack": true,
     "tsConfigPath": "apps/articles/tsconfig.app.json",
     "assets": [
-      "proto/*.proto"
+      "proto/*.proto",
+      { "include": "../../../config/*.yaml", "outDir": "../../../dist/config" }
     ],
     "watchAssets": true
   },
@@ -19,9 +20,7 @@
       "sourceRoot": "apps/articles/src",
       "compilerOptions": {
         "tsConfigPath": "apps/articles/tsconfig.app.json",
-        "assets": [
-          "proto/*.proto"
-        ],
+        "assets": ["proto/*.proto"],
         "watchAssets": true
       }
     },
@@ -32,9 +31,7 @@
       "sourceRoot": "apps/users/src",
       "compilerOptions": {
         "tsConfigPath": "apps/users/tsconfig.app.json",
-        "assets": [
-          "proto/*.proto"
-        ],
+        "assets": ["proto/*.proto"],
         "watchAssets": true
       }
     },
@@ -45,6 +42,17 @@
       "sourceRoot": "apps/gateways/src",
       "compilerOptions": {
         "tsConfigPath": "apps/gateways/tsconfig.app.json"
+      }
+    },
+    "grpc-config": {
+      "type": "library",
+      "root": "libs/grpc-config",
+      "entryFile": "index",
+      "sourceRoot": "libs/grpc-config/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/grpc-config/tsconfig.lib.json",
+        "assets": ["*.yaml"],
+        "watchAssets": true
       }
     }
   }
