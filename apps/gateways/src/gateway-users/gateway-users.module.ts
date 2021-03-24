@@ -10,6 +10,7 @@ import { GatewayUsersController } from './gateway-users.controller';
         name: 'USERS_PACKAGE',
         transport: Transport.GRPC,
         options: {
+          url: 'localhost:5010',
           package: 'users',
           protoPath: join(__dirname, '..', 'users', '/proto/users.proto'),
         },

@@ -10,6 +10,7 @@ import { GatewayArticlesController } from './gateway-articles.controller';
         name: 'ARTICLES_PACKAGE',
         transport: Transport.GRPC,
         options: {
+          url: 'localhost:5000',
           package: 'articles',
           protoPath: join(__dirname, '..', 'articles', '/proto/articles.proto'),
         },
