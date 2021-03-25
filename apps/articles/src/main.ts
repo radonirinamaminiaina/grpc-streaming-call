@@ -9,7 +9,7 @@ async function bootstrap() {
   const options = grpcTransport('articles') as MicroserviceOptions;
 
   app.connectMicroservice<MicroserviceOptions>(options);
-  app.startAllMicroservicesAsync();
+  await app.startAllMicroservicesAsync();
 
   Logger.log('Service Users started');
 }

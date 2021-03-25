@@ -5,7 +5,7 @@ import "google/protobuf/empty.proto";
 package articles;
 
 service ArticlesService {
-  rpc FindAll (google.protobuf.Empty) returns (Articles);
+  rpc FindAll (google.protobuf.Empty) returns (stream Articles);
   rpc FindOne (ArticleParam) returns (ArticlesItem);
 }
  
