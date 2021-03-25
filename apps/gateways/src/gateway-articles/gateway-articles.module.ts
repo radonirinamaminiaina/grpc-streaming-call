@@ -1,26 +1,18 @@
-import { GrpcConfiguration, grpcConfiguration } from '@app/grpc-config';
+import { grpcConfiguration, grpcTransport } from '@app/grpc-config';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { ClientsModule, Transport } from '@nestjs/microservices';
-import { join } from 'path';
+import { ClientProviderOptions, ClientsModule } from '@nestjs/microservices';
 import { GatewayArticlesController } from './gateway-articles.controller';
 
-const { articles } = grpcConfiguration() as GrpcConfiguration;
+const articlesServiceOptions = grpcTransport(
+  'articles',
+  true,
+) as ClientProviderOptions;
 
 @Module({
   imports: [
     ConfigModule.forRoot(grpcConfiguration()),
-    ClientsModule.register([
-      {
-        name: articles.name,
-        transport: Transport.GRPC,
-        options: {
-          url: articles.host,
-          package: articles.package,
-          protoPath: join(__dirname, articles.protoPathClient),
-        },
-      },
-    ]),
+    ClientsModule.register([articlesServiceOptions]),
   ],
   controllers: [GatewayArticlesController],
 })
