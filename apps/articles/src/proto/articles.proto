@@ -5,10 +5,10 @@ import "google/protobuf/empty.proto";
 package articles;
 
 service ArticlesService {
-  rpc findAll (google.protobuf.Empty) returns (Articles);
-  rpc findOne (ArticleParam) returns (ArticlesItem);
+  rpc FindAll (google.protobuf.Empty) returns (Articles);
+  rpc FindOne (ArticleParam) returns (ArticlesItem);
 }
-
+ 
 message ArticleParam {
   int32 id = 1;
 }

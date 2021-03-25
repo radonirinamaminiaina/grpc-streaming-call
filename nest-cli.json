@@ -6,7 +6,7 @@
   "compilerOptions": {
     "webpack": true,
     "tsConfigPath": "apps/articles/tsconfig.app.json",
-    "assets": ["proto/*.proto"],
+    "assets": ["**/*.proto"],
     "watchAssets": true
   },
   "projects": {
@@ -44,6 +44,15 @@
       "sourceRoot": "libs/grpc-config/src",
       "compilerOptions": {
         "tsConfigPath": "libs/grpc-config/tsconfig.lib.json"
+      }
+    },
+    "client": {
+      "type": "application",
+      "root": "apps/client",
+      "entryFile": "main",
+      "sourceRoot": "apps/client/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/client/tsconfig.app.json"
       }
     }
   }

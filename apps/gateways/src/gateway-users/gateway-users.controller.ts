@@ -1,6 +1,6 @@
-import { grpcConfiguration } from '@app/grpc-config';
-import { Controller, Get, Inject, OnModuleInit, Param } from '@nestjs/common';
-import { ClientGrpc, GrpcMethod } from '@nestjs/microservices';
+import { grpcTransport } from '@app/grpc-config';
+import { Controller, Get, OnModuleInit, Param } from '@nestjs/common';
+import { Client, ClientGrpc, GrpcMethod } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
 
 interface UsersRpcMethods {
@@ -10,9 +10,8 @@ interface UsersRpcMethods {
 
 @Controller('users')
 export class GatewayUsersController implements OnModuleInit {
-  constructor(
-    @Inject(grpcConfiguration().users.name) private readonly client: ClientGrpc,
-  ) {}
+  @Client(grpcTransport('users', 'client'))
+  private readonly client: ClientGrpc;
   private usersService: UsersRpcMethods;
 
   onModuleInit() {

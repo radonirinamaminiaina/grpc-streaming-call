@@ -1,8 +1,4 @@
-import {
-  ClientProviderOptions,
-  MicroserviceOptions,
-  Transport,
-} from '@nestjs/microservices';
+import { GrpcOptions, Transport } from '@nestjs/microservices';
 import { readFileSync } from 'fs';
 import * as yaml from 'js-yaml';
 import { join } from 'path';
@@ -28,18 +24,18 @@ export const grpcConfiguration = () => {
 
 export const grpcTransport = (
   key: string,
-  name?: boolean,
-): MicroserviceOptions | ClientProviderOptions => {
+  type: 'client' | 'server' = 'server',
+): GrpcOptions => {
   const config: PackageConfig = grpcConfiguration()[key];
   return {
-    ...(name ? { name: config.name } : {}),
+    ...(type === 'client' ? { name: config.name } : {}),
     transport: Transport.GRPC,
     options: {
       url: config.url,
       package: config.package,
       protoPath: join(
         __dirname,
-        config[name ? 'protoPathClient' : 'protoPathServer'],
+        config[type === 'client' ? 'protoPathClient' : 'protoPathServer'],
       ),
     },
   };
