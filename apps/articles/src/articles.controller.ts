@@ -1,5 +1,5 @@
 import { Controller } from '@nestjs/common';
-import { GrpcMethod } from '@nestjs/microservices';
+import { GrpcMethod, GrpcStreamCall } from '@nestjs/microservices';
 import { of } from 'rxjs';
 
 @Controller()
@@ -17,11 +17,17 @@ export class ArticlesController {
     },
   ];
 
-  @GrpcMethod('ArticlesService', 'FindAll')
-  findAll(_: any) {
-    return of({
-      articles: this.articles,
+  @GrpcStreamCall('ArticlesService', 'FindAll')
+  findAll(stream: any) {
+    stream.on('data', (message) => {
+      console.log(message);
+      stream.write({
+        articles: this.articles,
+      });
     });
+    /* return of({
+      articles: this.articles,
+    }); */
   }
 
   @GrpcMethod('ArticlesService', 'FindOne')

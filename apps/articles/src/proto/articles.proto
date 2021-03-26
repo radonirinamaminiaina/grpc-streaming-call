@@ -20,5 +20,5 @@ message ArticlesItem {
 }
 
 message Articles {
-  repeated ArticlesItem articles = 1;
+  ArticlesItem articles = 1;
 }
